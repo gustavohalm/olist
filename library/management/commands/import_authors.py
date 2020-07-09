@@ -9,7 +9,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         csv = options['csv_path']
-        with open(csv, 'r') as lines:
-            for i, line in enumerate(lines.readlines()):
-                if i > 0:
-                 Author.objects.create(name=line.replace('\n', ''))
+        with open(csv, 'r') as authors:
+            for i, author in enumerate(authors.readlines()):
+                if i < 0:
+                    continue
+                Author.objects.create(name=author.replace('\n', ''))
