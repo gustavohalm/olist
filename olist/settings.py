@@ -128,3 +128,5 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 APPEND_SLASH = False
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+DISABLE_COLLECTSTATIC=1
