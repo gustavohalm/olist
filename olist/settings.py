@@ -20,16 +20,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '(sviebs7(y58sehdv4tiecvzzcq+ih%p!*#06-_2ydbn)wu287'
+#SECRET_KEY = '(sviebs7(y58sehdv4tiecvzzcq+ih%p!*#06-_2ydbn)wu287'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+#ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = []
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
+DEBUG = os.getenv('DJANGO_DEBUG', False)
+
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(',')
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,3 +132,4 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 APPEND_SLASH = False
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
